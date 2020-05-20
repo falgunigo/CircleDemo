@@ -36,9 +36,12 @@ jobs:
           name: Run word count script
 
 workflows:
-  maven_test:
+  python_java_build:
     jobs:
-      - build
+      - python_build
+      - build:
+          requires:
+            - python_build
       - maven/test:
           requires:
-            - build
+            - python_build
